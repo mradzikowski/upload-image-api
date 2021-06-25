@@ -27,11 +27,7 @@ class User(models.Model):
 
 class Image(models.Model):
     user_id = models.OneToOneField(User, on_delete=models.CASCADE)
-    image = VersatileImageField(
-        'Image',
-        upload_to='images/',
-        ppoi_field='image_ppoi'
-    )
+    image = VersatileImageField("Image", upload_to="images/", ppoi_field="image_ppoi")
     image_ppoi = PPOIField()
 
     def __str__(self):

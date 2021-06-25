@@ -3,11 +3,10 @@ from .models import Account, User, Image
 
 
 class AccountSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Account
-        fields = '__all__'
-        read_only_fields = ('id',)
+        fields = "__all__"
+        read_only_fields = ("id",)
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -15,15 +14,14 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['username', 'account_type']
-        read_only_fields = ('id',)
+        fields = ["username", "account_type"]
+        read_only_fields = ("id",)
 
 
 class ImageSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Image
         fields = (
-            'image',
-            'user_id',
+            "image",
+            "user_id",
         )

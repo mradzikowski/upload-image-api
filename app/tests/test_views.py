@@ -9,14 +9,10 @@ def test_add_account(client):
     accounts = Account.objects.all()
     assert len(accounts) == 0
     resp = client.post(
-        "/api/account/",
-        {
-            "name": "Basic"
-        },
-        content_type="application/json"
+        "/api/account/", {"name": "Basic"}, content_type="application/json"
     )
     assert resp.status_code == 201
-    assert resp.data['name'] == "Basic"
+    assert resp.data["name"] == "Basic"
 
     accounts = Account.objects.all()
     assert len(accounts) == 1
@@ -27,11 +23,7 @@ def test_add_account_invalid_json(client):
     accounts = Account.objects.all()
     assert len(accounts) == 0
 
-    resp = client.post(
-        "/api/account/",
-        {},
-        content_type="application/json"
-    )
+    resp = client.post("/api/account/", {}, content_type="application/json")
     assert resp.status_code == 400
     accounts = Account.objects.all()
     assert len(accounts) == 0
@@ -42,7 +34,7 @@ def test_get_single_account(client, add_account):
     account = add_account(name="Premium")
     resp = client.get(f"/api/account/{account.id}/")
     assert resp.status_code == 200
-    assert resp.data['name'] == "Premium"
+    assert resp.data["name"] == "Premium"
 
 
 def test_get_single_account_incorrect_id(client):
@@ -56,5 +48,5 @@ def test_get_all_accounts(client, add_account):
     account_two = add_account(name="Basic")
     resp = client.get(f"/api/account/")
     assert resp.status_code == 200
-    assert resp.data[0]['name'] == account_one.name
-    assert resp.data[1]['name'] == account_two.name
+    assert resp.data[0]["name"] == account_one.name
+    assert resp.data[1]["name"] == account_two.name

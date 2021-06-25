@@ -34,6 +34,3 @@ def test_image_model():
 
     assert image.user_id == user
     assert str(image) == str(user)
-
-
-

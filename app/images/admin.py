@@ -13,12 +13,8 @@ class UserAdmin(DefaultUserAdmin):
 
 @admin.register(Account)
 class AccountAdmin(admin.ModelAdmin):
-    fields = (
-        "name",
-    )
-    list_display = (
-        "name",
-    )
+    fields = ("name",)
+    list_display = ("name",)
 
 
 @admin.register(User)

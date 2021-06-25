@@ -2,10 +2,9 @@ from images.serializers import AccountSerializer, UserSerializer, ImageSerialize
 from images.models import Account, Image, User
 import pytest
 
+
 def test_valid_account_serializer():
-    valid_serializer_data = {
-        "name": "Basic"
-    }
+    valid_serializer_data = {"name": "Basic"}
     serializer = AccountSerializer(data=valid_serializer_data)
     assert serializer.is_valid()
     assert serializer.validated_data == valid_serializer_data
@@ -14,9 +13,7 @@ def test_valid_account_serializer():
 
 
 def test_invalid_account_serializer():
-    invalid_serializer_data = {
-
-    }
+    invalid_serializer_data = {}
     serializer = AccountSerializer(data=invalid_serializer_data)
     assert not serializer.is_valid()
     assert serializer.validated_data == {}
@@ -37,14 +34,12 @@ def test_valid_user_serializer():
 
 def test_invalid_user_serializer():
 
-    invalid_serializer_data = {
-
-    }
+    invalid_serializer_data = {}
     serializer = UserSerializer(data=invalid_serializer_data)
     assert not serializer.is_valid()
     assert serializer.validated_data == invalid_serializer_data
     assert serializer.data == invalid_serializer_data
-    assert serializer.errors == {"username": ['This field is required.']}
+    assert serializer.errors == {"username": ["This field is required."]}
 
 
 @pytest.mark.django_db
@@ -54,11 +49,8 @@ def test_valid_image_serializer():
     user = User(username="XYZ", account_type=account)
 
     user.save()
-    image = Image.objects.create(
-        image='images/image.jpg',
-        user_id=user
-    )
+    image = Image.objects.create(image="images/image.jpg", user_id=user)
     image.save()
     serialized_data = ImageSerializer(image)
-    assert serialized_data['user_id']
-    assert serialized_data['image']
+    assert serialized_data["user_id"]
+    assert serialized_data["image"]
