@@ -1,7 +1,7 @@
 import pytest
-
-from images.models import Account, User, Image
 from versatileimagefield.fields import PPOIField
+
+from images.models import Account, Image, User
 
 
 @pytest.mark.django_db

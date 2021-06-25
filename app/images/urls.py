@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import AccountList, AccountDetail, UserList
+from .views import AccountDetail, AccountList, UserList
 
 urlpatterns = [
     path("api/account/", AccountList.as_view()),

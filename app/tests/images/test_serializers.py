@@ -1,6 +1,8 @@
-from images.serializers import AccountSerializer, UserSerializer, ImageSerializer
-from images.models import Account, Image, User
 import pytest
+
+from images.models import Account, Image, User
+from images.serializers import (AccountSerializer, ImageSerializer,
+                                UserSerializer)
 
 
 def test_valid_account_serializer():

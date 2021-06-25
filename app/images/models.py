@@ -1,6 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
-from versatileimagefield.fields import VersatileImageField, PPOIField
+from versatileimagefield.fields import PPOIField, VersatileImageField
 
 
 class CustomUser(AbstractUser):

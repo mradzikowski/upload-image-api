@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as DefaultUserAdmin
 
-from .models import Account, CustomUser, User, Image
+from .models import Account, CustomUser, Image, User
 
 # Register your models here.
 
