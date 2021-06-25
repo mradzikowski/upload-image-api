@@ -39,7 +39,3 @@ class ImageAdmin(admin.ModelAdmin):
         "user_id",
         "image",
     )
-
-
-
-

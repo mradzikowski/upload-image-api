@@ -1,6 +1,5 @@
 from rest_framework import serializers
 from .models import Account, User, Image
-from versatileimagefield.serializers import VersatileImageFieldSerializer
 
 
 class AccountSerializer(serializers.ModelSerializer):

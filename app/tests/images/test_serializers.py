@@ -62,4 +62,3 @@ def test_valid_image_serializer():
     serialized_data = ImageSerializer(image)
     assert serialized_data['user_id']
     assert serialized_data['image']
-
