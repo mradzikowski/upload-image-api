@@ -1,5 +1,4 @@
 import pytest
-from versatileimagefield.fields import PPOIField
 
 from images.models import Account, Image, User
 

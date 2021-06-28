@@ -80,7 +80,7 @@ def test_update_account(client, add_account):
     resp = client.put(
         f"/api/account/{account.id}/",
         {"name": "Premium"},
-        content_type="application/json"
+        content_type="application/json",
     )
     assert resp.status_code == 200
     assert resp.data["name"] == "Premium"
@@ -99,12 +99,18 @@ def test_update_account_incorrect_id(client):
 @pytest.mark.django_db
 def test_update_account_invalid_json(client, add_account):
     account = add_account(name="Premium")
-    resp = client.put(f"/api/account/{account.id}/", {}, content_type="application/json")
+    resp = client.put(
+        f"/api/account/{account.id}/", {}, content_type="application/json"
+    )
     assert resp.status_code == 400
 
 
 @pytest.mark.django_db
 def test_update_account_invalid_json_keys(client, add_account):
     account = add_account(name="Premium")
-    resp = client.put(f"/api/account/{account.id}/", {"blank": "blank"}, content_type="application/json")
+    resp = client.put(
+        f"/api/account/{account.id}/",
+        {"blank": "blank"},
+        content_type="application/json",
+    )
     assert resp.status_code == 400
