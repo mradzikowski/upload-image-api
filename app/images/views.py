@@ -1,4 +1,6 @@
 from django.http import Http404
+from drf_yasg import openapi
+from drf_yasg.utils import swagger_auto_schema
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -10,6 +12,12 @@ from .serializers import AccountSerializer, UserSerializer
 
 
 class AccountList(APIView):
+    @swagger_auto_schema(
+        request_body=openapi.Schema(
+            type=openapi.TYPE_OBJECT,
+            properties={"name": openapi.Schema(type=openapi.TYPE_STRING)},
+        )
+    )
     def post(self, request, format=None):
         serializer = AccountSerializer(data=request.data)
         if serializer.is_valid():
@@ -40,6 +48,12 @@ class AccountDetail(APIView):
         account.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+    @swagger_auto_schema(
+        request_body=openapi.Schema(
+            type=openapi.TYPE_OBJECT,
+            properties={"name": openapi.Schema(type=openapi.TYPE_STRING)},
+        )
+    )
     def put(self, request, pk, format=None):
         account = self.get_object(pk)
         serializer = AccountSerializer(account, data=request.data)

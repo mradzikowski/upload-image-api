@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "rest_framework",
     "versatileimagefield",
+    "drf_yasg",
     "images",
 ]
 
@@ -120,6 +121,8 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+SWAGGER_SETTINGS = {"USE_SESSION_AUTH": False}
 
 
 # Static files (CSS, JavaScript, Images)
