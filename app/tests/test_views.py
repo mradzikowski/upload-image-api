@@ -51,3 +51,24 @@ def test_get_all_accounts(client, add_account):
     assert resp.status_code == 200
     assert resp.data[0]["name"] == account_one.name
     assert resp.data[1]["name"] == account_two.name
+
+
+@pytest.mark.django_db
+def test_remove_account(client, add_account):
+    account = add_account(name="Premium")
+    resp = client.get(f"/api/account/{account.id}/")
+    assert resp.status_code == 200
+    assert resp.data["name"] == "Premium"
+
+    resp_two = client.delete(f"/api/account/{account.id}/")
+    assert resp_two.status_code == 204
+
+    resp_three = client.get(f"/api/account/")
+    assert resp_three.status_code == 200
+    assert len(resp_three.data) == 0
+
+
+@pytest.mark.django_db
+def test_remove_move_incorrect_id(client):
+    resp = client.delete(f"api/account/1000/")
+    assert resp.status_code == 404
