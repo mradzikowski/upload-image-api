@@ -72,3 +72,39 @@ def test_remove_account(client, add_account):
 def test_remove_move_incorrect_id(client):
     resp = client.delete(f"api/account/1000/")
     assert resp.status_code == 404
+
+
+@pytest.mark.django_db
+def test_update_account(client, add_account):
+    account = add_account(name="Basic")
+    resp = client.put(
+        f"/api/account/{account.id}/",
+        {"name": "Premium"},
+        content_type="application/json"
+    )
+    assert resp.status_code == 200
+    assert resp.data["name"] == "Premium"
+
+    resp_two = client.get(f"/api/account/{account.id}/")
+    assert resp_two.status_code == 200
+    assert resp_two.data["name"] == "Premium"
+
+
+@pytest.mark.django_db
+def test_update_account_incorrect_id(client):
+    resp = client.put(f"api/account/1000/")
+    assert resp.status_code == 404
+
+
+@pytest.mark.django_db
+def test_update_account_invalid_json(client, add_account):
+    account = add_account(name="Premium")
+    resp = client.put(f"/api/account/{account.id}/", {}, content_type="application/json")
+    assert resp.status_code == 400
+
+
+@pytest.mark.django_db
+def test_update_account_invalid_json_keys(client, add_account):
+    account = add_account(name="Premium")
+    resp = client.put(f"/api/account/{account.id}/", {"blank": "blank"}, content_type="application/json")
+    assert resp.status_code == 400
