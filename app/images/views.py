@@ -35,6 +35,11 @@ class AccountDetail(APIView):
         serializer = AccountSerializer(account)
         return Response(serializer.data)
 
+    def delete(self, request, pk, format=None):
+        account = self.get_object(pk)
+        account.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
 
 class UserList(APIView):
     def post(self, request, format=None):
