@@ -23,11 +23,11 @@ I hope that this will bear fruits. I have had lots of fun doing this project and
 ``` docker-compose exec images pytest ```
 
 ### Flake8
-``` docker-compose exec api flake8 src ```
+``` docker-compose exec images flake8```
 ### Black
-``` docker-compose exec api black src ```
+``` docker-compose exec images black```
 ### Isort
-``` docker-compose exec api isort src ```
+``` docker-compose exec images isort```
 
 ### Requests to be made and build better serializers
 ### TO DO 
